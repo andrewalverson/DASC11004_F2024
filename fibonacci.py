@@ -16,6 +16,13 @@ parser.add_argument("position", help = "position in the Fibonacci \
 	sequence", type = int)
 
 # add optional arguments
+# if 'store_true', this means to assign 'True' if the argument is
+# specified on the command line, so the default here for
+# 'store_true' is false
+parser.add_argument("-v", "--verbose", help = "Verbose output", \
+	action = 'store_true')
+parser.add_argument("-b", "--beyonce", help = "Verbose output for\
+	Beyonce", action = 'store_true')
 
 
 # parse the actual arguments
@@ -34,8 +41,15 @@ for i in range(args.position-1):
 
 fibonacci_number = a
 
-print(f'The Fibonacci sequence: {",".join(seq)}')
-print(f'The Fibonacci number for {args.position} is: {fibonacci_number}')
+# print the output, based on what the user asked for
 
+if args.verbose:
+	print(f'The Fibonacci sequence: {",".join(seq)}')
+	print(f'The Fibonacci number for {args.position} is: {fibonacci_number}')
+elif args.beyonce:
+	print(f'Beyonce, the Fibonacci sequence: {",".join(seq)}')
+	print(f'Beyonce, the Fibonacci number for {args.position} is: {fibonacci_number}')
+else:
+	print(fibonacci_number)
 
 
